@@ -18,6 +18,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -25,6 +26,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-width: 320px;
@@ -32,7 +34,7 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2em;
   line-height: 1.1;
   margin: 0;
   padding: 0;
@@ -45,27 +47,99 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #fcfcfc;
+  background-color: #ffebe7;
   cursor: pointer;
+  color: #535bf2;
   transition: border-color 0.25s;
 }
+
 button:hover {
+  background-color: rgb(255, 255, 255);
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 6px auto -webkit-focus-ring-color;
 }
 
+/* Weather Section */
+.wether-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #4a90e2;
+  color: #fff;
+  padding: 16px 0px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.get-city-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 16px;
+}
+
+#location-input {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+#get-weather-btn {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#get-weather-btn:hover {
+  background-color: #e6b800;
+}
+
+#weather-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weath-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.weath-conditions {
+  display: flex;
+}
+
+#weather-result img {
+  width: 80px;
+  height: 80px;
+}
+.weath-conditions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Joke Section */
 .joke-section {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #e0e1f5;
-
-  min-width: 100%;
-  min-height: 70vh;
+  width: 100%;
+  min-height: 50vh;
 }
+
 .joke-cart {
   display: flex;
   flex-direction: column;
@@ -74,18 +148,15 @@ button:focus-visible {
   align-items: center;
   min-width: 320px;
   max-width: 60vh;
-  min-height: 30vh;
 
+  min-height: 30vh;
   border-radius: 8px;
   padding: 5vh;
-
-  background: rgb(238, 174, 202);
   background: radial-gradient(
     circle,
     rgba(238, 174, 202, 1) 0%,
     rgba(148, 187, 233, 1) 100%
   );
-
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
@@ -93,4 +164,114 @@ button:focus-visible {
 .joke-box {
   font-size: 24px;
   text-align: center;
+}
+
+.rate-box {
+  display: flex;
+  gap: 8px;
+}
+
+.rate-btn {
+  font-size: 24px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.rate-btn:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+.is-hidden {
+  display: none;
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .wether-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .get-city-box {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #location-input {
+    width: 100%;
+    text-align: center;
+  }
+
+  #weather-result {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .joke-cart {
+    min-width: 280px;
+    max-width: 90vw;
+    padding: 3vh;
+  }
+
+  .joke-box {
+    font-size: 20px;
+  }
+
+  .rate-box {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .rate-btn {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .wether-section {
+    padding: 10px;
+  }
+
+  .get-city-box {
+    gap: 6px;
+  }
+
+  #location-input {
+    font-size: 14px;
+  }
+
+  #get-weather-btn {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  #weather-result {
+    font-size: 16px;
+  }
+  .weath-conditions {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .joke-cart {
+    padding: 2vh;
+    gap: 12px;
+  }
+
+  .joke-box {
+    font-size: 18px;
+  }
+
+  .rate-btn {
+    font-size: 18px;
+    padding: 6px 10px;
+  }
 }

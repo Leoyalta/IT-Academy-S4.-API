@@ -7,14 +7,27 @@
     <title>Vite + TS</title>
   </head>
   <body>
+    <header class="wether-section">
+      <div class="get-city-box">
+        <input type="text" id="location-input" placeholder="Enter city..." />
+        <button id="get-weather-btn">Get Weather</button>
+      </div>
+      <div id="weather-result"></div>
+    </header>
     <section class="joke-section">
       <div class="joke-cart">
-        <h1>Preparado para reir? 😂🤣</h1>
+        <h1>Preparado para reir? 🤣</h1>
         <button class="btn-joke">Next joke ➡️</button>
         <div class="joke-box"></div>
+
+        <div class="rate-box is-hidden">
+          <button class="rate-btn" type="button" data-score="1">😐</button>
+          <button class="rate-btn" type="button" data-score="2">😄</button>
+          <button class="rate-btn" type="button" data-score="3">😂</button>
+        </div>
       </div>
     </section>
 
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/main.ts" defer></script>
   </body>
 </html>
