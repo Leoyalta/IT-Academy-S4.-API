@@ -146,10 +146,9 @@ button:focus-visible {
   gap: 16px;
   justify-content: center;
   align-items: center;
-  min-width: 320px;
+  min-width: 45vw;
   max-width: 60vh;
-
-  min-height: 30vh;
+  min-height: 33vh;
   border-radius: 8px;
   padding: 5vh;
   background: radial-gradient(
@@ -212,7 +211,7 @@ button:focus-visible {
   }
 
   .joke-cart {
-    min-width: 280px;
+    min-width: 86vw;
     max-width: 90vw;
     padding: 3vh;
   }
