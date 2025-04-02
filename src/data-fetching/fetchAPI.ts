@@ -1,7 +1,6 @@
 interface JokeResponse {
   id: string;
   joke: string;
-  status: number;
 }
 const getJoke = async (): Promise<JokeResponse | string> => {
   const options: RequestInit = {
@@ -14,10 +13,11 @@ const getJoke = async (): Promise<JokeResponse | string> => {
     const response = await fetch("https://icanhazdadjoke.com/", options);
 
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      throw new Error(`HTTP error. Try again later!`);
     }
 
     const data: JokeResponse = await response.json();
+
     return data;
   } catch (error) {
     console.error("Request error:", error);

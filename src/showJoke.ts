@@ -1,34 +1,44 @@
 import evaluateJoke from "./evaluateJoke";
 import getNextJoke from "./utlils/getNextJoke";
 
-const showJokeBox = document.querySelector(".joke-box");
-const rateBox = document.querySelector(".rate-box");
-const nextBtn = document.querySelector(".btn-joke");
-const rateBtns = document.querySelectorAll(".rate-btn");
+const showJokeBox = document.querySelector(".joke-box") as HTMLElement;
+const rateBox = document.querySelector(".rate-box") as HTMLElement;
+const nextBtn = document.querySelector(".btn-joke") as HTMLButtonElement;
+const rateBtns = document.querySelectorAll(
+  ".rate-btn"
+) as NodeListOf<HTMLButtonElement>;
 
-let currentJoke = "";
+let currentJoke: string = "";
 
-const showJokeFunc = async () => {
+const showJokeFunc = async (): Promise<void> => {
   const data = await getNextJoke();
   console.log(data);
 
-  if (data && data.joke) {
-    showJokeBox.textContent = data.joke;
-    currentJoke = data.joke;
-    rateBox.classList.remove("is-hidden");
-  } else {
-    showJokeBox.textContent = "Failed to load the joke. Try again later!";
-    rateBox.classList.add("is-hidden");
+  if (showJokeBox && rateBox) {
+    if (typeof data === "object" && data !== null && "joke" in data) {
+      showJokeBox.textContent = data.joke;
+      currentJoke = data.joke;
+      rateBox.classList.remove("is-hidden");
+    } else {
+      showJokeBox.textContent = "Failed to load the joke. Try again later!";
+      rateBox.classList.add("is-hidden");
+    }
   }
 };
 
 rateBtns.forEach((button) => {
-  button.addEventListener("click", (event) => {
-    const score = parseInt(event.target.getAttribute("data-score"));
-    evaluateJoke(currentJoke, score);
+  button.addEventListener("click", (event: Event) => {
+    const target = event.target as HTMLButtonElement;
+    const score = parseInt(target.getAttribute("data-score") || "0", 10);
+
+    if (currentJoke) {
+      evaluateJoke(currentJoke, score);
+    }
   });
 });
 
-nextBtn.addEventListener("click", showJokeFunc);
+if (nextBtn) {
+  nextBtn.addEventListener("click", showJokeFunc);
+}
 
 export default showJokeFunc;

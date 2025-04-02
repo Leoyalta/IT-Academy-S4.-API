@@ -1,7 +1,9 @@
-const locationInput = document.getElementById("location-input");
+const locationInput = document.getElementById(
+  "location-input"
+) as HTMLInputElement;
 
-const getCityName = () => {
-  const city = locationInput.value.trim();
+const getCityName = (): string => {
+  const city: string = locationInput.value.trim();
   return city || "Barcelona";
 };
 

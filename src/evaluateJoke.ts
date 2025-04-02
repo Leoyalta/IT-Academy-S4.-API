@@ -1,5 +1,12 @@
-const reportJokes = [];
-const evaluateJoke = (joke, score) => {
+interface JokeReport {
+  joke: string;
+  score: number;
+  date: string;
+}
+
+const reportJokes: JokeReport[] = [];
+
+const evaluateJoke = (joke: string, score: number): void => {
   if (!joke || joke === "error") return;
 
   const existingJoke = reportJokes.find((obj) => obj.joke === joke);
@@ -9,8 +16,8 @@ const evaluateJoke = (joke, score) => {
     existingJoke.date = new Date().toISOString();
   } else {
     reportJokes.push({
-      joke: joke,
-      score: score,
+      joke,
+      score,
       date: new Date().toISOString(),
     });
   }

@@ -9,10 +9,9 @@ const getRandomChuckNorrisFact = async (): Promise<
     const response = await fetch("https://api.chucknorris.io/jokes/random");
 
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      throw new Error(`HTTP error. Try again later!`);
     }
     const data = await response.json();
-    console.log(data);
 
     return data;
   } catch (error) {
