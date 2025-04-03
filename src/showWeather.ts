@@ -5,6 +5,9 @@ const weatherResult = document.getElementById("weather-result") as HTMLElement;
 const getWeatherBtn = document.getElementById(
   "get-weather-btn"
 ) as HTMLButtonElement;
+const weatherTemplate = document.getElementById(
+  "weather-template"
+) as HTMLTemplateElement;
 
 interface WeatherResponse {
   name: string;
@@ -31,25 +34,28 @@ const showWeather = async (): Promise<void> => {
     return;
   }
 
-  const { temp, feels_like, humidity } = data.main;
-  const { speed: windSpeed } = data.wind;
-  const icon: string = data.weather[0].icon;
+  const templateClone = document.importNode(weatherTemplate.content, true);
 
-  weatherResult.innerHTML = `
-    <div class="weath-box"> 
-      <h1>Weather in ${data.name}</h1>
-      <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather icon">
-    </div>
-    <div class="weath-conditions">
-      <p>Temperature: <strong>${temp}°C</strong></p>
-      <p>Feels like: <strong>${feels_like}°C</strong></p>
-      <p>Wind speed: <strong>${windSpeed} m/s</strong></p>
-      <p>Humidity: <strong>${humidity}%</strong></p>
-    </div>
-  `;
+  templateClone.querySelector(
+    ".city-name"
+  )!.textContent = `Weather in ${data.name}`;
+  templateClone
+    .querySelector(".weather-icon")!
+    .setAttribute(
+      "src",
+      `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+    );
+  templateClone.querySelector(".temp")!.textContent = `${data.main.temp}`;
+  templateClone.querySelector(
+    ".feels"
+  )!.textContent = `${data.main.feels_like}`;
+  templateClone.querySelector(".wind")!.textContent = `${data.wind.speed}`;
+  templateClone.querySelector(".hum")!.textContent = `${data.main.humidity}`;
+
+  weatherResult.innerHTML = "";
+  weatherResult.appendChild(templateClone);
 };
 
-// Додаємо обробник подій
 getWeatherBtn.addEventListener("click", showWeather);
 
 export default showWeather;

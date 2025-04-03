@@ -13,6 +13,18 @@
         <button id="get-weather-btn">Get Weather</button>
       </div>
       <div id="weather-result"></div>
+      <template id="weather-template">
+        <div class="weath-box">
+          <h1 class="city-name"></h1>
+          <img class="weather-icon" alt="Weather icon" />
+        </div>
+        <div class="weath-conditions">
+          <p>Temperature: <strong class="temp"></strong>°C</p>
+          <p>Feels like: <strong class="feels"></strong>°C</p>
+          <p>Wind speed: <strong class="wind"></strong> m/s</p>
+          <p>Humidity: <strong class="hum"></strong>%</p>
+        </div>
+      </template>
     </header>
     <section class="joke-section">
       <div class="joke-cart">
