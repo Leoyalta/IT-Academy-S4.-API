@@ -28,17 +28,15 @@ const getWeatherByCity = async (city: string): Promise<WeatherResponse> => {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      const error: any = new Error("API error");
+      error.status = response.status;
+      throw error;
     }
 
     const data: WeatherResponse = await response.json();
     return data;
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      throw new Error(error.message);
-    } else {
-      throw new Error("An unknown error occurred.");
-    }
+  } catch (error: any) {
+    throw error;
   }
 };
 
